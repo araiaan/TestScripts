@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+<script src="http://code.jquery.com/jquery-1.6.min.js"></script>
+<script>
+
+$.ajaxSetup({
+  xhrFields: {
+    withCredentials: true
+  }
+});
+
+jqXHR = $.ajax({
+  url: "https://blah.com",
+  headers: {"X-v1": "test12343"},
+  statusCode: {
+    400: function() {
+      
+       alert(jqXHR.getResponseHeader);
+     
+    }
+  },
+  contentType: "text/plain",
+  crossDomain: true
+  
+}).error(function() {
+ 
+ alert(jqXHR.getResponseHeader("Content-Type"));
+ $.ajax({
+      url: "https://blah.com" ,
+      contentType: "text/plain",
+      crossDomain: true
+  
+     });
+});
+
+
+
+</script>
+
+
+</body>
+</html>
